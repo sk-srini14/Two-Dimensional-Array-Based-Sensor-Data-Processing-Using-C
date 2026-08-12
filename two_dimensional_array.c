@@ -2,35 +2,57 @@
 
 int main()
 {
-    int rows, columns;
-    int matrix[100][100];
+    // Rows represent different sensors
+    // Columns represent different measurements
+    float sensorData[3][5];
 
-    printf("Enter number of rows: ");
-    scanf("%d", &rows);
+    int i, j;
 
-    printf("Enter number of columns: ");
-    scanf("%d", &columns);
+    printf("ECE Sensor Data Monitoring System\n");
+    printf("---------------------------------\n");
 
-    printf("Enter the elements:\n");
-
-    for (int i = 0; i < rows; i++)
+    // Input sensor readings
+    for (i = 0; i < 3; i++)
     {
-        for (int j = 0; j < columns; j++)
+        printf("\nEnter 5 readings for Sensor %d:\n", i + 1);
+
+        for (j = 0; j < 5; j++)
         {
-            scanf("%d", &matrix[i][j]);
+            printf("Reading %d: ", j + 1);
+            scanf("%f", &sensorData[i][j]);
         }
     }
 
-    printf("\nThe 2D Array is:\n");
+    // Display sensor data
+    printf("\n\nSensor Data Table\n");
+    printf("-----------------\n");
 
-    for (int i = 0; i < rows; i++)
+    for (i = 0; i < 3; i++)
     {
-        for (int j = 0; j < columns; j++)
+        printf("Sensor %d: ", i + 1);
+
+        for (j = 0; j < 5; j++)
         {
-            printf("%d ", matrix[i][j]);
+            printf("%.2f ", sensorData[i][j]);
         }
 
         printf("\n");
+    }
+
+    // Calculate average for each sensor
+    printf("\nAverage Sensor Readings\n");
+    printf("-----------------------\n");
+
+    for (i = 0; i < 3; i++)
+    {
+        float sum = 0;
+
+        for (j = 0; j < 5; j++)
+        {
+            sum += sensorData[i][j];
+        }
+
+        printf("Sensor %d Average = %.2f\n", i + 1, sum / 5);
     }
 
     return 0;
